@@ -1,0 +1,20 @@
+rsa:
+  public_keys:
+    rsa_public_key: configs/rsa_public_key.pem
+
+  private_keys:
+    rsa_private_key: configs/rsa_private_key.pem
+
+pgp:
+  - name: pgp_public_key
+    path: configs/pgp_public_key.asc
+
+  - name: pgp_private_key
+    path: configs/pgp_private_key.asc
+    passphrase: 12345
+
+sftp:
+  user: admin
+  pass: 123456
+  host: localhost
+  port: 2222

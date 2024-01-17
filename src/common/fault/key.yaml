@@ -1,0 +1,4 @@
+# auth
+auth_invalid_token:
+  code: 1000
+  message: invalid token
