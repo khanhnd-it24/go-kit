@@ -18,3 +18,17 @@ sftp:
   pass: 123456
   host: localhost
   port: 2222
+
+postgresql:
+  host: host
+  port: port
+  user: user
+  password: password
+  db_name: db_name
+  ssl_mode: disable
+  auto_migrate: false
+  max_life_time: 300
+
+mongo:
+  uri: uri
+  db: db

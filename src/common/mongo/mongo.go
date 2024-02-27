@@ -2,11 +2,10 @@ package appmongo
 
 import (
 	"context"
-	"core-service/src/common/configs"
 	"fmt"
+	"go-kit/src/common/configs"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.opentelemetry.io/contrib/instrumentation/go.mongodb.org/mongo-driver/mongo/otelmongo"
 	"time"
 )
 
@@ -39,17 +38,14 @@ func NewMongoProvider(cf *configs.Config) (*DBProvider, error) {
 	defer cancel()
 
 	opts := options.ClientOptions{}
-	if cf.Tracer.Enabled {
-		opts.Monitor = otelmongo.NewMonitor()
-	}
 
-	uri := cf.MongoDb.Uri
+	uri := cf.Mongo.Uri
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri), &opts)
 	if err != nil {
 		return nil, fmt.Errorf("[MongoDB] failed to connect to DB %w", err)
 	}
 
-	db := client.Database(cf.MongoDb.DBName)
+	db := client.Database(cf.Mongo.DB)
 	return &DBProvider{
 		db:     db,
 		client: client,
